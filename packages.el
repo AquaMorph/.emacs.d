@@ -5,7 +5,7 @@
 
 ; list the packages you want
 (setq package-list
-	'(fountain-mode cyberpunk-theme))
+	'(fountain-mode olivetti cyberpunk-theme))
 
 ; activate all the packages
 (package-initialize)
