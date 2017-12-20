@@ -12,6 +12,11 @@
 	'(fountain-mode-hook (quote (turn-on-olivetti-mode imenu-list-minor-mode)))
 )
 
+(menu-bar-mode 1)
+(toggle-scroll-bar -1) 
+(tool-bar-mode -1)
+(setq inhibit-startup-screen t) 
+
 (custom-set-faces
  )
 
