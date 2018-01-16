@@ -24,6 +24,8 @@
 (setq ispell-personal-dictionary "~/.emacs.d/.ispell")
 (require 'ispell)
 
+(global-set-key (kbd "M-s s") 'ispell-word)
+
 (custom-set-faces
  )
 
