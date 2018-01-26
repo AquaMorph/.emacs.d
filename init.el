@@ -12,7 +12,7 @@
 	'(fountain-mode-hook (quote (turn-on-olivetti-mode imenu-list-minor-mode flyspell-mode)))
 	)
 
-(add-hook 'org-mode-hook (lambda () (flyspell-mode)))
+(add-hook 'org-mode-hook (lambda () (flyspell-mode) (visual-line-mode t)))
 
 ; Make Emacs look nicer
 (menu-bar-mode 1)
