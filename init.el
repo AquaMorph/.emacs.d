@@ -8,10 +8,10 @@
  '(ansi-color-names-vector
    ["black" "red3" "ForestGreen" "yellow3" "blue" "magenta3" "DeepSkyBlue" "gray50"])
  '(custom-enabled-themes (quote (manoj-dark)))
- '(package-selected-packages (quote (olivetti fountain-mode cyberpunk-theme)))
- '(fountain-mode-hook (quote (turn-on-olivetti-mode imenu-list-minor-mode flyspell-mode)))
- )
-
+ '(fountain-mode-hook
+   (quote
+    (turn-on-olivetti-mode imenu-list-minor-mode flyspell-mode nolinum screenplayfont))))
+ 
 (add-hook 'org-mode-hook (lambda () (flyspell-mode) (visual-line-mode t)))
 
 ; Make Emacs look nicer
@@ -19,10 +19,26 @@
 (toggle-scroll-bar -1) 
 (tool-bar-mode -1)
 (setq inhibit-startup-screen t)
-(add-to-list 'default-frame-alist '(font . "inconsolata-10"))
+(setq-default left-fringe-width  3)
+(setq-default right-fringe-width  3)
+(setq visible-bell 1)
+
+(define-globalized-minor-mode aqua-mode rainbow-mode
+  (lambda () (rainbow-mode 1)))
+
+(aqua-mode 1)
+
+; Fonts
+(add-to-list 'default-frame-alist '(font . "inconsolata-11"))
+(defun screenplayfont ()
+  (add-to-list 'default-frame-alist '(font . "courierprime-12"))
+)
 
 ; Enable Line Numbers
 (global-linum-mode t)
+(defun nolinum ()
+  (global-linum-mode 0)
+)
 
 ; Startup Window size
 (add-to-list 'default-frame-alist '(width  . 120))
@@ -34,6 +50,8 @@
 (setq ispell-personal-dictionary "~/.emacs.d/.ispell")
 (require 'ispell)
 
+(ac-config-default)
+
 ; Right click for spelling corrections
 (eval-after-load "flyspell"
   '(progn
@@ -43,6 +61,11 @@
 (global-set-key (kbd "M-s s") 'ispell-word)
 
 (custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  )
 
-
+(setq custom-file "~/.emacs.d/package-selected-packages.el")
+(load custom-file)
