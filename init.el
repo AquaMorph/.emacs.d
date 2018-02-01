@@ -1,18 +1,9 @@
 (package-initialize)
 
 (load "~/.emacs.d/packages")
-
-(custom-set-variables
- '(ansi-color-faces-vector
-   [default default default italic underline success warning error])
- '(ansi-color-names-vector
-   ["black" "red3" "ForestGreen" "yellow3" "blue" "magenta3" "DeepSkyBlue" "gray50"])
- '(custom-enabled-themes (quote (manoj-dark)))
- '(fountain-mode-hook
-   (quote
-    (turn-on-olivetti-mode imenu-list-minor-mode flyspell-mode nolinum screenplayfont))))
  
 (add-hook 'org-mode-hook (lambda () (flyspell-mode) (visual-line-mode t)))
+(add-hook 'c-mode-common-hook (lambda () (imenu-list-minor-mode)))
 
 ; Make Emacs look nicer
 (menu-bar-mode 1)
@@ -50,6 +41,7 @@
 (setq ispell-personal-dictionary "~/.emacs.d/.ispell")
 (require 'ispell)
 
+; Auto Complete
 (ac-config-default)
 
 ; Right click for spelling corrections
@@ -60,12 +52,7 @@
 
 (global-set-key (kbd "M-s s") 'ispell-word)
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-
+; Make Emacs Happy
+(custom-set-faces)
 (setq custom-file "~/.emacs.d/package-selected-packages.el")
 (load custom-file)
