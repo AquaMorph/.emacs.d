@@ -13,6 +13,7 @@
 (setq-default left-fringe-width  3)
 (setq-default right-fringe-width  3)
 (setq visible-bell 1)
+(global-prettify-symbols-mode +1)
 
 (define-globalized-minor-mode aqua-mode rainbow-mode
   (lambda () (rainbow-mode 1)))
