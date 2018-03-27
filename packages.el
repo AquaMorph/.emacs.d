@@ -1,11 +1,11 @@
 (when (>= emacs-major-version 24)
 	(require 'package)
 	(add-to-list 'package-archives
-		     '("melpa" . "http://melpa.milkbox.net/packages/") t))
+             '("melpa" . "http://melpa.milkbox.net/packages/") t))
 
 ; list the packages you want
 (setq package-list
-	'(fountain-mode imenu-list olivetti cyberpunk-theme flyspell ispell focus rainbow-mode auto-complete))
+	'(fountain-mode imenu-list olivetti cyberpunk-theme flyspell ispell focus rainbow-mode auto-complete jedi))
 
 ; activate all the packages
 (package-initialize)
