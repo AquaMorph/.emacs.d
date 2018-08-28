@@ -1,8 +1,7 @@
 (when (>= emacs-major-version 24)
 	(require 'package)
 	(add-to-list 'package-archives
-		     '("melpa" . "http://stable.melpa.org/packages/") t)
-	             (package-refresh-contents))
+		     '("melpa" . "https://stable.melpa.org/packages/") t))
 
 ; list the packages you want
 (setq package-list
@@ -19,3 +18,4 @@
 (dolist (package package-list)
 	(unless (package-installed-p package)
 		(package-install package)))
+
