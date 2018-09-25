@@ -37,8 +37,8 @@
 (add-to-list 'default-frame-alist '(height . 40))
 
 ; Spellcheck
-(add-to-list 'exec-path "C:/Program Files (x86)/Aspell/bin/")
-(setq ispell-program-name "aspell")
+(add-to-list 'exec-path "C:/Program Files/Hunspell/bin")
+(setq ispell-program-name "hunspell")
 (setq ispell-personal-dictionary "~/.emacs.d/.ispell")
 (require 'ispell)
 
@@ -57,3 +57,4 @@
 (custom-set-faces)
 (setq custom-file "~/.emacs.d/package-selected-packages.el")
 (load custom-file)
+(put 'upcase-region 'disabled nil)
