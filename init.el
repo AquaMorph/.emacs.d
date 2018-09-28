@@ -38,7 +38,7 @@
 
 ; Spellcheck
 (add-to-list 'exec-path "C:/Program Files/Hunspell/bin")
-(setq ispell-program-name "hunspell")
+(if (string-equal system-type "windows-nt") (setq ispell-program-name "hunspell") '(setq ispell-program-name "aspell"))
 (setq ispell-personal-dictionary "~/.emacs.d/.ispell")
 (require 'ispell)
 
