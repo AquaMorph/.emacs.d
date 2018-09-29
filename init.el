@@ -3,6 +3,7 @@
 (load "~/.emacs.d/packages")
  
 (add-hook 'org-mode-hook (lambda () (flyspell-mode) (visual-line-mode t)))
+(add-hook 'markdown-mode-hook (lambda () (flyspell-mode) (visual-line-mode t)))
 (add-hook 'c-mode-common-hook (lambda () (imenu-list-minor-mode)))
 (add-hook 'python-mode-hook 'jedi:setup)
 
@@ -37,8 +38,8 @@
 (add-to-list 'default-frame-alist '(height . 40))
 
 ; Spellcheck
-(add-to-list 'exec-path "C:/Program Files (x86)/Aspell/bin/")
-(setq ispell-program-name "aspell")
+(add-to-list 'exec-path "C:/Program Files/Hunspell/bin")
+(if (string-equal system-type "windows-nt") (setq ispell-program-name "hunspell") '(setq ispell-program-name "aspell"))
 (setq ispell-personal-dictionary "~/.emacs.d/.ispell")
 (require 'ispell)
 
