@@ -21,7 +21,7 @@
 (aqua-mode 1)
 
 ; Fonts
-(add-to-list 'default-frame-alist '(font . "inconsolata-11"))
+(add-to-list 'default-frame-alist '(font . "inconsolatamedium-12"))
 (defun screenplayfont ()
   (add-to-list 'default-frame-alist '(font . "courierprime-12"))
 )
@@ -57,3 +57,4 @@
 (custom-set-faces)
 (setq custom-file "~/.emacs.d/package-selected-packages.el")
 (load custom-file)
+(put 'upcase-region 'disabled nil)
