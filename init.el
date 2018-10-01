@@ -22,7 +22,7 @@
 (aqua-mode 1)
 
 ; Fonts
-(add-to-list 'default-frame-alist '(font . "inconsolatamedium-12"))
+(add-to-list 'default-frame-alist '(font . "inconsolata-13"))
 (defun screenplayfont ()
   (add-to-list 'default-frame-alist '(font . "courierprime-12"))
 )
