@@ -1,7 +1,11 @@
+; Fix for 26.2
+(if (version< emacs-version "26.2")
+    (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3"))
+
 (package-initialize)
 
 (load "~/.emacs.d/packages")
- 
+
 (add-hook 'org-mode-hook (lambda () (flyspell-mode) (visual-line-mode t)))
 (add-hook 'markdown-mode-hook (lambda () (flyspell-mode) (visual-line-mode t)))
 (add-hook 'c-mode-common-hook (lambda () (imenu-list-minor-mode)))
