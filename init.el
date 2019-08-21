@@ -58,6 +58,13 @@
 
 (global-set-key (kbd "M-s s") 'ispell-word)
 
+; File backups
+(setq backup-directory-alist `(("." . "~/.emacs.d/saves")))
+(setq delete-old-versions t
+  kept-new-versions 6
+  kept-old-versions 2
+  version-control t)
+
 ; Make Emacs Happy
 (custom-set-faces)
 (setq custom-file "~/.emacs.d/package-selected-packages.el")
