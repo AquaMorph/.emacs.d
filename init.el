@@ -70,3 +70,9 @@
 (setq custom-file "~/.emacs.d/package-selected-packages.el")
 (load custom-file)
 (put 'upcase-region 'disabled nil)
+
+; Windows navigation
+(global-set-key (kbd "C-l") 'windmove-up)
+(global-set-key (kbd "C-k") 'windmove-down)
+(global-set-key (kbd "C-j") 'windmove-left)
+(global-set-key (kbd "C-;") 'windmove-right)
