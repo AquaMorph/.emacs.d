@@ -73,7 +73,7 @@
 
 ; Windows navigation
 (setq windmove-wrap-around t)
-(global-set-key (kbd "C-L") 'windmove-up)
-(global-set-key (kbd "C-K") 'windmove-down)
-(global-set-key (kbd "C-J") 'windmove-left)
-(global-set-key (kbd "C-:") 'windmove-right)
+(global-set-key [?\C-\S-l] 'windmove-up)
+(global-set-key [?\C-\S-k] 'windmove-down)
+(global-set-key [?\C-\S-j] 'windmove-left)
+(global-set-key [?\C-:] 'windmove-right)
