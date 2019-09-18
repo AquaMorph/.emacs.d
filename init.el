@@ -77,3 +77,6 @@
 (global-set-key [?\C-\S-k] 'windmove-down)
 (global-set-key [?\C-\S-j] 'windmove-left)
 (global-set-key [?\C-:] 'windmove-right)
+
+; Automatically follow symbolic links
+(setq vc-follow-symlinks t)
