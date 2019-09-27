@@ -6,6 +6,12 @@
 
 (load "~/.emacs.d/packages")
 
+; Make Emacs Happy
+(custom-set-faces)
+(setq custom-file "~/.emacs.d/package-selected-packages.el")
+(load custom-file)
+(put 'upcase-region 'disabled nil)
+
 (add-hook 'org-mode-hook (lambda () (flyspell-mode) (visual-line-mode t)))
 (add-hook 'markdown-mode-hook (lambda () (flyspell-mode) (visual-line-mode t)))
 (add-hook 'c-mode-common-hook (lambda () (imenu-list-minor-mode)))
@@ -65,11 +71,13 @@
   kept-old-versions 2
   version-control t)
 
-; Make Emacs Happy
-(custom-set-faces)
-(setq custom-file "~/.emacs.d/package-selected-packages.el")
-(load custom-file)
-(put 'upcase-region 'disabled nil)
+; Line Number Formatting
+;(setq linum-format "%4d")
+(setq-default left-fringe-width  2)
+(setq-default right-fringe-width  2)
+(set-face-attribute 'fringe nil :background "#0288D1" :foreground "#0288D1")
+(eval-after-load "linum"
+  '(set-face-attribute 'linum nil :height 140))
 
 ; Windows navigation
 (setq windmove-wrap-around t)
