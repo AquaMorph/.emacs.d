@@ -74,7 +74,7 @@
 ; Line Number Formatting
 ;(setq linum-format "%4d")
 (setq-default left-fringe-width  2)
-(setq-default right-fringe-width  2)
+(setq-default right-fringe-width  0)
 (set-face-attribute 'fringe nil :background "#0288D1" :foreground "#0288D1")
 (eval-after-load "linum"
   '(set-face-attribute 'linum nil :height 140))
