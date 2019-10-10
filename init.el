@@ -15,7 +15,7 @@
 (add-hook 'org-mode-hook (lambda () (flyspell-mode) (visual-line-mode t)))
 (add-hook 'markdown-mode-hook (lambda () (flyspell-mode) (visual-line-mode t)))
 (add-hook 'c-mode-common-hook (lambda () (imenu-list-minor-mode)))
-(add-hook 'python-mode-hook 'jedi:setup)
+(add-hook 'python-mode-hook (lambda () (jedi:setup) (imenu-list-minor-mode)))
 
 ; Make Emacs look nicer
 (menu-bar-mode 1)
