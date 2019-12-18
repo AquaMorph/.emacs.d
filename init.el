@@ -28,6 +28,13 @@
 (set-frame-parameter (selected-frame) 'alpha '(80 . 80))
  (add-to-list 'default-frame-alist '(alpha . (80 . 80)))
 
+; Custom theme
+(let ((class '((class color) (min-colors 89)))
+    (aqua-blue "#0288D1")
+    (aqua-white "#ffffff"))
+  (set-face-background 'mode-line aqua-blue)
+  (set-face-foreground 'mode-line aqua-white))
+
 (define-globalized-minor-mode aqua-mode rainbow-mode
   (lambda () (rainbow-mode 1)))
 
