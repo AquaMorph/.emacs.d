@@ -30,10 +30,23 @@
 
 ; Custom theme
 (let ((class '((class color) (min-colors 89)))
-    (aqua-blue "#0288D1")
-    (aqua-white "#ffffff"))
+    (aqua-blue "#0288d1")
+    (aqua-white "#ffffff")
+    (aqua-light-blue "#b3e5fc"))
   (set-face-background 'mode-line aqua-blue)
-  (set-face-foreground 'mode-line aqua-white))
+  (set-face-foreground 'mode-line aqua-white)
+  (set-face-attribute 'mode-line nil
+                    :background aqua-blue
+                    :foreground aqua-white
+                    :box '(:line-width 4 :color "#0288d1")
+                    :overline nil
+                    :underline nil)
+  (set-face-attribute 'mode-line-inactive nil
+                    :background aqua-light-blue
+                    :foreground aqua-blue
+                    :box '(:line-width 4 :color "#b3e5fc")
+                    :overline nil
+                    :underline nil))
 
 (define-globalized-minor-mode aqua-mode rainbow-mode
   (lambda () (rainbow-mode 1)))
