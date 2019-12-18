@@ -25,6 +25,8 @@
 (setq-default left-fringe-width  3)
 (setq-default right-fringe-width  3)
 (setq visible-bell 1)
+(set-frame-parameter (selected-frame) 'alpha '(80 . 80))
+ (add-to-list 'default-frame-alist '(alpha . (80 . 80)))
 
 (define-globalized-minor-mode aqua-mode rainbow-mode
   (lambda () (rainbow-mode 1)))
