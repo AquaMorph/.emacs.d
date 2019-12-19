@@ -45,9 +45,9 @@
                     :overline nil
                     :underline nil)
   (set-face-attribute 'mode-line-inactive nil
-                    :background aqua-light-blue
+                    :background aqua-white
                     :foreground aqua-blue
-                    :box '(:line-width 4 :color "#b3e5fc")
+                    :box '(:line-width 4 :color "#ffffff")
                     :overline nil
                     :underline nil))
 
