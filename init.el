@@ -35,6 +35,9 @@
     (aqua-light-blue "#b3e5fc"))
   (set-face-background 'mode-line aqua-blue)
   (set-face-foreground 'mode-line aqua-white)
+  (set-face-attribute 'fringe nil :background aqua-blue :foreground aqua-blue)
+  (eval-after-load "linum"
+    '(set-face-attribute 'linum nil :height 140 :foreground "#0288d1"))
   (set-face-attribute 'mode-line nil
                     :background aqua-blue
                     :foreground aqua-white
@@ -97,9 +100,6 @@
 ;(setq linum-format "%4d")
 (setq-default left-fringe-width  2)
 (setq-default right-fringe-width  0)
-(set-face-attribute 'fringe nil :background "#0288D1" :foreground "#0288D1")
-(eval-after-load "linum"
-  '(set-face-attribute 'linum nil :height 140))
 
 ; Windows navigation
 (setq windmove-wrap-around t)
