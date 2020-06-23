@@ -5,7 +5,7 @@
 
 ; list the packages you want
 (setq package-list
-	'(fountain-mode imenu-list olivetti cyberpunk-theme flyspell ispell focus rainbow-mode auto-complete jedi markdown-mode vlf))
+	'(fountain-mode imenu-list olivetti cyberpunk-theme flyspell ispell focus rainbow-mode auto-complete jedi markdown-mode vlf go-mode go-autocomplete))
 
 ; activate all the packages
 (package-initialize)

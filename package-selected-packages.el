@@ -17,7 +17,7 @@
     (turn-on-olivetti-mode imenu-list-minor-mode flyspell-mode nolinum screenplayfont)))
  '(package-selected-packages
    (quote
-    (rainbow-delimiters rainbow-mode olivetti imenu-list fountain-mode focus cyberpunk-theme auto-complete))))
+    (go-autocomplete go-mode rainbow-delimiters rainbow-mode olivetti imenu-list fountain-mode focus cyberpunk-theme auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

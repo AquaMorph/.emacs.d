@@ -17,6 +17,11 @@
 (add-hook 'c-mode-common-hook (lambda () (imenu-list-minor-mode)))
 (add-hook 'python-mode-hook (lambda () (jedi:setup) (imenu-list-minor-mode)))
 
+; Go lang
+(add-hook 'go-mode-hook (lambda () (auto-complete-mode 1)))
+(with-eval-after-load 'go-mode
+   (require 'go-autocomplete))
+
 ; Make Emacs look nicer
 (menu-bar-mode 1)
 (toggle-scroll-bar -1) 
