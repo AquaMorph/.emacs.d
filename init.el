@@ -13,7 +13,7 @@
 (put 'upcase-region 'disabled nil)
 
 (add-hook 'org-mode-hook (lambda () (flyspell-mode) (visual-line-mode t)))
-(add-hook 'markdown-mode-hook (lambda () (flyspell-mode) (visual-line-mode t)))
+(add-hook 'markdown-mode-hook (lambda () (flyspell-mode) (visual-line-mode t) (turn-on-olivetti-mode)))
 (add-hook 'c-mode-common-hook (lambda () (imenu-list-minor-mode)))
 (add-hook 'python-mode-hook (lambda () (jedi:setup) (imenu-list-minor-mode)))
 
