@@ -12,7 +12,7 @@
 
 (add-hook 'org-mode-hook (lambda () (flyspell-mode) (visual-line-mode t)))
 (add-hook 'markdown-mode-hook (lambda () (flyspell-mode) (visual-line-mode t) (turn-on-olivetti-mode)))
-(add-hook 'c-mode-common-hook (lambda () (imenu-list-minor-mode)))
+(add-hook 'c-mode-common-hook (lambda() (imenu-add-to-menubar "Imenu")))
 (add-hook 'python-mode-hook (lambda () (jedi:setup) (imenu-list-minor-mode)))
 
 ; Go lang
@@ -66,9 +66,9 @@
 )
 
 ; Enable Line Numbers
-(global-linum-mode t)
+(global-display-line-numbers-mode 1)
 (defun nolinum ()
-  (global-linum-mode 0)
+  (global-display-line-numbers-mode 0)
 )
 
 ; Startup Window size
@@ -113,3 +113,7 @@
 
 ; Automatically follow symbolic links
 (setq vc-follow-symlinks t)
+
+
+(menu-bar-mode -1)
+(menu-bar-mode 1)
