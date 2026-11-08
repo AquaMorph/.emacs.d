@@ -20,17 +20,40 @@
 (add-hook 'org-mode-hook (lambda () (aqua-enable-flyspell) (visual-line-mode t)))
 (add-hook 'markdown-mode-hook (lambda () (aqua-enable-flyspell) (visual-line-mode t) (turn-on-olivetti-mode)))
 (add-hook 'c-mode-common-hook (lambda() (imenu-add-to-menubar "Imenu")))
-(add-hook 'python-mode-hook (lambda () (jedi:setup) (imenu-list-minor-mode)))
+(add-hook 'python-mode-hook #'imenu-list-minor-mode)
+(add-hook 'python-ts-mode-hook #'imenu-list-minor-mode)
 
 ; Screenplay writing
 (dolist (function '(turn-on-olivetti-mode imenu-list-minor-mode
                     aqua-enable-flyspell nolinum screenplayfont))
   (add-hook 'fountain-mode-hook function t))
 
-; Go lang
-(add-hook 'go-mode-hook (lambda () (auto-complete-mode 1)))
-(with-eval-after-load 'go-mode
-   (require 'go-autocomplete))
+; Language-aware completion for Python and Go.
+(require 'eglot)
+(add-to-list 'eglot-server-programs
+             '((python-mode python-ts-mode) . ("pylsp")))
+(add-to-list 'eglot-server-programs
+             '((go-mode go-ts-mode) . ("gopls")))
+
+(defun aqua-eglot-ensure ()
+  "Start Eglot when the current language's server is installed."
+  (let ((server (cond
+                 ((derived-mode-p 'python-mode 'python-ts-mode) "pylsp")
+                 ((derived-mode-p 'go-mode 'go-ts-mode) "gopls"))))
+    (when (and server (executable-find server))
+      (eglot-ensure))))
+
+(dolist (hook '(python-mode-hook python-ts-mode-hook
+                go-mode-hook go-ts-mode-hook))
+  (add-hook hook #'aqua-eglot-ensure))
+
+; Corfu provides the completion popup; M-TAB still works without it.
+(setq corfu-auto t
+      corfu-auto-delay 0.2
+      corfu-auto-prefix 2)
+(if (require 'corfu nil t)
+    (global-corfu-mode 1)
+  (message "Corfu is not installed; run M-x aqua-install-packages"))
 
 ; Make Emacs look nicer
 (menu-bar-mode 1)
@@ -98,9 +121,6 @@
           (executable-find "hunspell")))
 (setq ispell-personal-dictionary
       (expand-file-name ".ispell" user-emacs-directory))
-
-; Auto Complete
-(ac-config-default)
 
 ; Right click for spelling corrections
 (eval-after-load "flyspell"
