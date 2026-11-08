@@ -17,14 +17,18 @@
              (executable-find ispell-program-name))
     (flyspell-mode 1)))
 
+(defun aqua-enable-olivetti ()
+  "Enable Olivetti in the current buffer."
+  (olivetti-mode 1))
+
 (add-hook 'org-mode-hook (lambda () (aqua-enable-flyspell) (visual-line-mode t)))
-(add-hook 'markdown-mode-hook (lambda () (aqua-enable-flyspell) (visual-line-mode t) (turn-on-olivetti-mode)))
+(add-hook 'markdown-mode-hook (lambda () (aqua-enable-flyspell) (visual-line-mode t) (aqua-enable-olivetti)))
 (add-hook 'c-mode-common-hook (lambda() (imenu-add-to-menubar "Imenu")))
 (add-hook 'python-mode-hook #'imenu-list-minor-mode)
 (add-hook 'python-ts-mode-hook #'imenu-list-minor-mode)
 
 ; Screenplay writing
-(dolist (function '(turn-on-olivetti-mode imenu-list-minor-mode
+(dolist (function '(aqua-enable-olivetti imenu-list-minor-mode
                     aqua-enable-flyspell nolinum screenplayfont))
   (add-hook 'fountain-mode-hook function t))
 
