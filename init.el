@@ -69,6 +69,11 @@
     (global-corfu-mode 1)
   (message "Corfu is not installed; run M-x aqua-install-packages"))
 
+; Built-in minibuffer navigation and persistent file history.
+(fido-vertical-mode 1)
+(recentf-mode 1)
+(save-place-mode 1)
+
 ; Make Emacs look nicer
 (menu-bar-mode 1)
 (toggle-scroll-bar -1) 
