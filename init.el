@@ -37,8 +37,8 @@
 (toggle-scroll-bar -1) 
 (tool-bar-mode -1)
 (setq inhibit-startup-screen t)
-(setq-default left-fringe-width  3)
-(setq-default right-fringe-width  3)
+(setq-default left-fringe-width 2
+              right-fringe-width 0)
 (setq visible-bell 1)
 (set-frame-parameter (selected-frame) 'alpha '(100 . 90))
  (add-to-list 'default-frame-alist '(alpha . (100 . 90)))
@@ -51,8 +51,9 @@
   (set-face-background 'mode-line aqua-blue)
   (set-face-foreground 'mode-line aqua-white)
   (set-face-attribute 'fringe nil :background aqua-blue :foreground aqua-blue)
-  (eval-after-load "linum"
-    '(set-face-attribute 'linum nil :height 140 :foreground "#0288d1"))
+  (set-face-attribute 'line-number nil :height 140 :foreground aqua-blue)
+  (set-face-attribute 'line-number-current-line nil
+                      :height 140 :foreground aqua-blue)
   (set-face-attribute 'mode-line nil
                     :background aqua-blue
                     :foreground aqua-white
@@ -117,11 +118,6 @@
   kept-old-versions 2
   version-control t)
 
-; Line Number Formatting
-;(setq linum-format "%4d")
-(setq-default left-fringe-width  2)
-(setq-default right-fringe-width  0)
-
 ; Windows navigation
 (setq windmove-wrap-around t)
 (global-set-key [?\C-\S-l] 'windmove-up)
@@ -131,7 +127,3 @@
 
 ; Automatically follow symbolic links
 (setq vc-follow-symlinks t)
-
-
-(menu-bar-mode -1)
-(menu-bar-mode 1)
