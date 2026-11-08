@@ -104,12 +104,13 @@
                     :overline nil
                     :underline nil))
 
-(define-globalized-minor-mode aqua-mode rainbow-mode
-  (lambda () (rainbow-mode 1)))
+(defun aqua-enable-rainbow ()
+  "Enable color previews in the current buffer when installed."
+  (when (require 'rainbow-mode nil t)
+    (rainbow-mode 1)))
 
-(if (require 'rainbow-mode nil t)
-    (aqua-mode 1)
-  (message "Rainbow Mode is not installed; run M-x aqua-install-packages"))
+(dolist (hook '(css-mode-hook css-ts-mode-hook emacs-lisp-mode-hook))
+  (add-hook hook #'aqua-enable-rainbow))
 
 ; Fonts
 (add-to-list 'default-frame-alist '(font . "inconsolata-13"))
@@ -118,8 +119,8 @@
   (require 'face-remap)
   (face-remap-set-base 'default :family "Courier Prime" :height 120))
 
-; Enable Line Numbers
-(global-display-line-numbers-mode 1)
+; Show line numbers only in programming buffers.
+(add-hook 'prog-mode-hook #'display-line-numbers-mode)
 (defun nolinum ()
   "Disable line numbers in the current buffer only."
   (display-line-numbers-mode -1))
