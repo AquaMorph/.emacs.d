@@ -28,8 +28,8 @@
 (setq-default left-fringe-width  3)
 (setq-default right-fringe-width  3)
 (setq visible-bell 1)
-(set-frame-parameter (selected-frame) 'alpha '(80 . 80))
- (add-to-list 'default-frame-alist '(alpha . (80 . 80)))
+(set-frame-parameter (selected-frame) 'alpha '(100 . 90))
+ (add-to-list 'default-frame-alist '(alpha . (100 . 90)))
 
 ; Custom theme
 (let ((class '((class color) (min-colors 89)))
