@@ -177,10 +177,14 @@
 
 (global-set-key (kbd "M-s s") 'ispell-word)
 
-; File backups
-(setq backup-directory-alist
-      `(("." . ,(expand-file-name "saves" user-emacs-directory))))
-(setq delete-old-versions t
+; Keep backups and uniquely named auto-saves out of working directories.
+(let* ((backup-directory (expand-file-name "saves/" user-emacs-directory))
+       (auto-save-directory (expand-file-name "auto-save/" backup-directory)))
+  (make-directory auto-save-directory t)
+  (setq backup-directory-alist `(("." . ,backup-directory))
+        auto-save-file-name-transforms `((".*" ,auto-save-directory t))))
+(setq backup-by-copying t
+  delete-old-versions t
   kept-new-versions 6
   kept-old-versions 2
   version-control t)
