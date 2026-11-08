@@ -2,12 +2,13 @@
 (when (version< emacs-version "30.1")
   (error "This configuration requires Emacs 30.1 or newer"))
 
-(load "~/.emacs.d/packages")
+(load (expand-file-name "packages.el" user-emacs-directory))
 
 ; Make Emacs Happy
 (custom-set-faces)
-(setq custom-file "~/.emacs.d/package-selected-packages.el")
-(load custom-file)
+(setq custom-file
+      (expand-file-name "package-selected-packages.el" user-emacs-directory))
+(load custom-file 'noerror 'nomessage)
 (put 'upcase-region 'disabled nil)
 
 (defun aqua-enable-flyspell ()
@@ -94,7 +95,8 @@
 (setq ispell-program-name
       (or (executable-find "aspell")
           (executable-find "hunspell")))
-(setq ispell-personal-dictionary "~/.emacs.d/.ispell")
+(setq ispell-personal-dictionary
+      (expand-file-name ".ispell" user-emacs-directory))
 
 ; Auto Complete
 (ac-config-default)
@@ -108,7 +110,8 @@
 (global-set-key (kbd "M-s s") 'ispell-word)
 
 ; File backups
-(setq backup-directory-alist `(("." . "~/.emacs.d/saves")))
+(setq backup-directory-alist
+      `(("." . ,(expand-file-name "saves" user-emacs-directory))))
 (setq delete-old-versions t
   kept-new-versions 6
   kept-old-versions 2
