@@ -42,11 +42,11 @@
   (add-hook 'fountain-mode-hook function t))
 
 ; Language-aware completion for Python and Go.
-(require 'eglot)
-(add-to-list 'eglot-server-programs
-             '((python-mode python-ts-mode) . ("pylsp")))
-(add-to-list 'eglot-server-programs
-             '((go-mode go-ts-mode) . ("gopls")))
+(with-eval-after-load 'eglot
+  (add-to-list 'eglot-server-programs
+               '((python-mode python-ts-mode) . ("pylsp")))
+  (add-to-list 'eglot-server-programs
+               '((go-mode go-ts-mode) . ("gopls"))))
 
 (defun aqua-eglot-ensure ()
   "Start Eglot when the current language's server is installed."
@@ -54,6 +54,7 @@
                  ((derived-mode-p 'python-mode 'python-ts-mode) "pylsp")
                  ((derived-mode-p 'go-mode 'go-ts-mode) "gopls"))))
     (when (and server (executable-find server))
+      (require 'eglot)
       (eglot-ensure))))
 
 (dolist (hook '(python-mode-hook python-ts-mode-hook

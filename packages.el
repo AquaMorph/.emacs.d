@@ -2,8 +2,9 @@
 (add-to-list 'package-archives
              '("melpa" . "https://stable.melpa.org/packages/") t)
 
-; activate all the packages
-(package-initialize)
+; Normal startup activates packages before init.el; batch checks do not.
+(unless package--initialized
+  (package-initialize))
 
 ; Run explicitly with M-x aqua-install-packages when setting up Emacs.
 (defun aqua-install-packages ()
