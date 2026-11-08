@@ -1,7 +1,6 @@
-(when (>= emacs-major-version 24)
-	(require 'package)
-	(add-to-list 'package-archives
-		     '("melpa" . "https://stable.melpa.org/packages/") t))
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "https://stable.melpa.org/packages/") t)
 
 ; list the packages you want
 (setq package-list

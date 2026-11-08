@@ -1,6 +1,6 @@
-; Fix for 26.2
-(if (version< emacs-version "26.2")
-    (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3"))
+; This configuration targets Emacs 30.1 and newer.
+(when (version< emacs-version "30.1")
+  (error "This configuration requires Emacs 30.1 or newer"))
 
 (load "~/.emacs.d/packages")
 
