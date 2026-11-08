@@ -68,14 +68,15 @@
 ; Fonts
 (add-to-list 'default-frame-alist '(font . "inconsolata-13"))
 (defun screenplayfont ()
-  (add-to-list 'default-frame-alist '(font . "courierprime-12"))
-)
+  "Use Courier Prime at 12 points in the current buffer only."
+  (require 'face-remap)
+  (face-remap-set-base 'default :family "Courier Prime" :height 120))
 
 ; Enable Line Numbers
 (global-display-line-numbers-mode 1)
 (defun nolinum ()
-  (global-display-line-numbers-mode 0)
-)
+  "Disable line numbers in the current buffer only."
+  (display-line-numbers-mode -1))
 
 ; Startup Window size
 (add-to-list 'default-frame-alist '(width  . 120))
