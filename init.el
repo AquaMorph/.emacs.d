@@ -48,11 +48,36 @@
   (add-to-list 'eglot-server-programs
                '((go-mode go-ts-mode) . ("gopls"))))
 
+(defun aqua-eglot-server ()
+  "Return the configured language server for the current buffer."
+  (cond
+   ((derived-mode-p 'python-mode 'python-ts-mode) "pylsp")
+   ((derived-mode-p 'go-mode 'go-ts-mode) "gopls")))
+
+(defun aqua-eglot-status ()
+  "Report language server availability and Eglot status for this buffer."
+  (interactive)
+  (let* ((server (aqua-eglot-server))
+         (path (and server (executable-find server))))
+    (cond
+     ((not server)
+      (message "No automatic Eglot setup for %s; configured for Python and Go" major-mode))
+     ((not path)
+      (message "%s not found in exec-path. Install with: %s; then ensure its bin directory is in exec-path and run M-x eglot"
+               server
+               (if (equal server "pylsp")
+                   "pipx install python-lsp-server"
+                 "go install golang.org/x/tools/gopls@latest")))
+     (t
+      (message "%s found at %s; Eglot %s"
+               server path
+               (if (and (featurep 'eglot) (eglot-current-server))
+                   "connected"
+                 "not connected; run M-x eglot"))))))
+
 (defun aqua-eglot-ensure ()
   "Start Eglot when the current language's server is installed."
-  (let ((server (cond
-                 ((derived-mode-p 'python-mode 'python-ts-mode) "pylsp")
-                 ((derived-mode-p 'go-mode 'go-ts-mode) "gopls"))))
+  (let ((server (aqua-eglot-server)))
     (when (and server (executable-find server))
       (require 'eglot)
       (eglot-ensure))))
