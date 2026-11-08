@@ -10,8 +10,14 @@
 (load custom-file)
 (put 'upcase-region 'disabled nil)
 
-(add-hook 'org-mode-hook (lambda () (flyspell-mode) (visual-line-mode t)))
-(add-hook 'markdown-mode-hook (lambda () (flyspell-mode) (visual-line-mode t) (turn-on-olivetti-mode)))
+(defun aqua-enable-flyspell ()
+  "Enable Flyspell when a configured spellchecker is available."
+  (when (and ispell-program-name
+             (executable-find ispell-program-name))
+    (flyspell-mode 1)))
+
+(add-hook 'org-mode-hook (lambda () (aqua-enable-flyspell) (visual-line-mode t)))
+(add-hook 'markdown-mode-hook (lambda () (aqua-enable-flyspell) (visual-line-mode t) (turn-on-olivetti-mode)))
 (add-hook 'c-mode-common-hook (lambda() (imenu-add-to-menubar "Imenu")))
 (add-hook 'python-mode-hook (lambda () (jedi:setup) (imenu-list-minor-mode)))
 
@@ -76,10 +82,13 @@
 (add-to-list 'default-frame-alist '(height . 40))
 
 ; Spellcheck
-(add-to-list 'exec-path "C:/Program Files/Hunspell/bin")
-(if (string-equal system-type "windows-nt") (setq ispell-program-name "hunspell") '(setq ispell-program-name "aspell"))
-(setq ispell-personal-dictionary "~/.emacs.d/.ispell")
+(when (eq system-type 'windows-nt)
+  (add-to-list 'exec-path "C:/Program Files/Hunspell/bin"))
 (require 'ispell)
+(setq ispell-program-name
+      (or (executable-find "aspell")
+          (executable-find "hunspell")))
+(setq ispell-personal-dictionary "~/.emacs.d/.ispell")
 
 ; Auto Complete
 (ac-config-default)
