@@ -9,6 +9,9 @@
 (setq custom-file
       (expand-file-name "package-selected-packages.el" user-emacs-directory))
 (load custom-file 'noerror 'nomessage)
+(if (memq 'cyberpunk (custom-available-themes))
+    (load-theme 'cyberpunk t)
+  (message "Cyberpunk theme is not installed; run M-x aqua-install-packages"))
 (put 'upcase-region 'disabled nil)
 
 (defun aqua-enable-flyspell ()
@@ -18,17 +21,23 @@
     (flyspell-mode 1)))
 
 (defun aqua-enable-olivetti ()
-  "Enable Olivetti in the current buffer."
-  (olivetti-mode 1))
+  "Enable Olivetti in the current buffer when installed."
+  (when (require 'olivetti nil t)
+    (olivetti-mode 1)))
+
+(defun aqua-enable-imenu-list ()
+  "Enable Imenu List in the current buffer when installed."
+  (when (require 'imenu-list nil t)
+    (imenu-list-minor-mode 1)))
 
 (add-hook 'org-mode-hook (lambda () (aqua-enable-flyspell) (visual-line-mode t)))
 (add-hook 'markdown-mode-hook (lambda () (aqua-enable-flyspell) (visual-line-mode t) (aqua-enable-olivetti)))
 (add-hook 'c-mode-common-hook (lambda() (imenu-add-to-menubar "Imenu")))
-(add-hook 'python-mode-hook #'imenu-list-minor-mode)
-(add-hook 'python-ts-mode-hook #'imenu-list-minor-mode)
+(add-hook 'python-mode-hook #'aqua-enable-imenu-list)
+(add-hook 'python-ts-mode-hook #'aqua-enable-imenu-list)
 
 ; Screenplay writing
-(dolist (function '(aqua-enable-olivetti imenu-list-minor-mode
+(dolist (function '(aqua-enable-olivetti aqua-enable-imenu-list
                     aqua-enable-flyspell nolinum screenplayfont))
   (add-hook 'fountain-mode-hook function t))
 
@@ -97,7 +106,9 @@
 (define-globalized-minor-mode aqua-mode rainbow-mode
   (lambda () (rainbow-mode 1)))
 
-(aqua-mode 1)
+(if (require 'rainbow-mode nil t)
+    (aqua-mode 1)
+  (message "Rainbow Mode is not installed; run M-x aqua-install-packages"))
 
 ; Fonts
 (add-to-list 'default-frame-alist '(font . "inconsolata-13"))
