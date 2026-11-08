@@ -21,6 +21,11 @@
 (add-hook 'c-mode-common-hook (lambda() (imenu-add-to-menubar "Imenu")))
 (add-hook 'python-mode-hook (lambda () (jedi:setup) (imenu-list-minor-mode)))
 
+; Screenplay writing
+(dolist (function '(turn-on-olivetti-mode imenu-list-minor-mode
+                    aqua-enable-flyspell nolinum screenplayfont))
+  (add-hook 'fountain-mode-hook function t))
+
 ; Go lang
 (add-hook 'go-mode-hook (lambda () (auto-complete-mode 1)))
 (with-eval-after-load 'go-mode
