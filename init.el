@@ -1,6 +1,6 @@
-; This configuration targets Emacs 30.1 and newer.
-(when (version< emacs-version "30.1")
-  (error "This configuration requires Emacs 30.1 or newer"))
+; This configuration targets Emacs 29.1 and newer.
+(when (version< emacs-version "29.1")
+  (error "This configuration requires Emacs 29.1 or newer"))
 
 (load (expand-file-name "packages.el" user-emacs-directory))
 
