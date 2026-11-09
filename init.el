@@ -1,3 +1,5 @@
+;;; init.el --- Emacs configuration -*- lexical-binding: t; -*-
+
 ; This configuration targets Emacs 29.1 and newer.
 (when (version< emacs-version "29.1")
   (error "This configuration requires Emacs 29.1 or newer"))
@@ -101,8 +103,10 @@
 
 ; Make Emacs look nicer
 (menu-bar-mode 1)
-(toggle-scroll-bar -1) 
-(tool-bar-mode -1)
+(when (fboundp 'scroll-bar-mode)
+  (scroll-bar-mode -1))
+(when (fboundp 'tool-bar-mode)
+  (tool-bar-mode -1))
 (setq inhibit-startup-screen t)
 (setq-default left-fringe-width 2
               right-fringe-width 0)
