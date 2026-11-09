@@ -6,5 +6,7 @@
 /saves
 /session.*
 /places
+/places.eld
 /recentf
+/recentf.eld
 .python-environments
