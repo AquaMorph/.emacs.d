@@ -103,6 +103,13 @@
 
 ; Make Emacs look nicer
 (menu-bar-mode 1)
+(defun aqua-configure-menu-bar (frame)
+  "Show the menu bar only on graphical FRAMEs."
+  (set-frame-parameter frame 'menu-bar-lines
+                       (if (display-graphic-p frame) 1 0)))
+(add-hook 'after-make-frame-functions #'aqua-configure-menu-bar)
+(dolist (frame (frame-list))
+  (aqua-configure-menu-bar frame))
 (when (fboundp 'scroll-bar-mode)
   (scroll-bar-mode -1))
 (when (fboundp 'tool-bar-mode)
